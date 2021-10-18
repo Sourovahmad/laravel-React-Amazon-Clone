@@ -1,12 +1,26 @@
 .header img{
    max-height: 80px;
+
 }
 
 .header{
+    text-align: center;
+}
 
-    height: 100vh;
-    background-color: aquamarine;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+.header nav{
+    background-color: black;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.header nav a {
+    text-decoration: none;
+    padding: 8px;
+    margin: 8px;
+    color: #fff;
+}
+
+.header nav a:hover{
+    background-color: aliceblue;
+    color: black;
 }
