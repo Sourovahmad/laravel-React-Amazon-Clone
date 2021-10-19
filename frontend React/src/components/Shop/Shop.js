@@ -1,40 +1,45 @@
 import React, { useEffect, useState } from 'react';
+import './Shop.css';
+import Products from '../../fakeData/products.json'
+
 
 
 const Shop = () => {
-
 
     const [allData, setAllData] = useState([]);
 
     useEffect(() => {
 
-        fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-simple-resources/master/fakeData/products.JSON')
-            .then(res => res.json())
-            .then(data => setAllData(data));
-
+        setAllData(Products)
         return () => {
             setAllData([]);
         }
+
     }, [])
+
+
 
     let [firstInput, setFirstInput] = useState(0);
     let [secondInput, setSecondInput] = useState(10);
 
     const currentData = allData.slice(firstInput, secondInput);
 
-
-
-
     return (
-        <div>
+        <div className="shop-container">
 
             <ul>
                 {
-                    currentData.map(e => <li> {e.name}</li>)
+                    currentData.map(el => <li> {el.name}</li>)
                 }
             </ul>
 
+            <div className="product-container">
 
+            </div>
+
+            <div className="cart-container">
+
+            </div>
 
         </div>
     );
