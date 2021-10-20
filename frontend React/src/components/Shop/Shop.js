@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Shop.css';
 import Products from '../../fakeData/products.json'
+import Product from '../Product/Product';
 
 
 
@@ -26,21 +27,21 @@ const Shop = () => {
 
     return (
         <div className="shop-container">
-
-            <ul>
-                {
-                    currentData.map(el => <li> {el.name}</li>)
-                }
-            </ul>
-
             <div className="product-container">
+
+                {
+                    currentData.map(pd => <Product product={pd}> </Product>)
+                }
+
+
+
 
             </div>
 
             <div className="cart-container">
-
+                <h3>hi iam cart containeer
+                </h3>
             </div>
-
         </div>
     );
 };

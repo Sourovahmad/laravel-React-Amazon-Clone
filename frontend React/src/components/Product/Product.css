@@ -1,0 +1,9 @@
+.singleProduct{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 10px;
+    background-color: aquamarine;
+    padding-bottom: 5px;
+
+}
+
