@@ -5,7 +5,6 @@ import './Product.css';
 const Product = (props) => {
 
     const product = props.product;
-    console.log(product);
 
     return (
         <div className="singleProduct">
@@ -16,6 +15,16 @@ const Product = (props) => {
 
             <div className="contentSection">
                 <h4 className="product-name">{product.name}</h4>
+
+                <br />
+
+                <p><small>  By  <b>{product.seller} </b>  </small></p>
+                <p>Price : <b> {product.price} </b>  </p>
+
+                <p><small> Only <b> {product.stock}</b> left. Order Soon</small></p>
+
+                <button onClick={() => props.handleOrder(product)} className="order-button"> <i className="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</button>
+
             </div>
 
         </div>
