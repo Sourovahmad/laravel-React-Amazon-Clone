@@ -53,7 +53,7 @@ const Shop = () => {
             <div className="product-container">
 
                 {
-                    currentData.map(pd => <Product product={pd} handleOrder={handleOrder}> </Product>)
+                    currentData.map(pd => <Product product={pd} key={pd.key} handleOrder={handleOrder}> </Product>)
                 }
 
             </div>
