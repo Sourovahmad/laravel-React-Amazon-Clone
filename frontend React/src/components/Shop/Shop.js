@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Shop.css';
 import Products from '../../fakeData/products.json'
 import Product from '../Product/Product';
+import { Link } from 'react-router-dom';
 
 
 
@@ -53,7 +54,7 @@ const Shop = () => {
             <div className="product-container">
 
                 {
-                    currentData.map(pd => <Product product={pd} key={pd.key} handleOrder={handleOrder}> </Product>)
+                    currentData.map(pd => <Product product={pd}  handleOrder={handleOrder}> </Product>)
                 }
 
             </div>
@@ -62,6 +63,10 @@ const Shop = () => {
                 <h4>Order Summary</h4>
                 <h6> <b>Items Orderd: {items.length} </b></h6>
                 <p><small>Total Price: <b> ${numberChanger(totalPrice)} </b>  </small></p>
+                <Link to="/review"> 
+                 <button  className="order-button"> Review Order </button>
+                </Link>
+                
             </div>
         </div>
     );

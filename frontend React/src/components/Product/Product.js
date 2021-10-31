@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Product.css';
 
 
 const Product = (props) => {
+
+
 
     const product = props.product;
 
@@ -14,8 +17,7 @@ const Product = (props) => {
             </div>
 
             <div className="contentSection">
-                <h4 className="product-name">{product.name}</h4>
-
+                <h4 className="product-name"> <Link to={`/product/${product.key}`}>   {product.name} </Link>   </h4>
                 <br />
 
                 <p><small>  By  <b>{product.seller} </b>  </small></p>
