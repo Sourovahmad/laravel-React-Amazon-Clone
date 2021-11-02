@@ -7,6 +7,7 @@ const addToDb = id => {
   }
   else {
     shopping_cart = JSON.parse(exists);
+    console.log(JSON.parse(exists));
     if (shopping_cart[id]) {
       const newCount = shopping_cart[id] + 1;
       shopping_cart[id] = newCount;
@@ -19,6 +20,10 @@ const addToDb = id => {
 }
 
 const getDb = () => localStorage.getItem('shopping_cart');
+
+
+
+
 const updateDb = cart => {
   localStorage.setItem('shopping_cart', JSON.stringify(cart));
 }

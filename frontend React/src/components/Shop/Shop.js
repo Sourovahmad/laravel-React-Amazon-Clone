@@ -3,11 +3,14 @@ import './Shop.css';
 import Products from '../../fakeData/products.json'
 import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
+import { addToDb } from '../../utilities/fakedb';
+
 
 
 
 const Shop = () => {
 
+        
     const [allData, setAllData] = useState([]);
     let [firstInput, setFirstInput] = useState(0);
     let [secondInput, setSecondInput] = useState(10);
@@ -35,6 +38,7 @@ const Shop = () => {
         let total = 0;
         newItems.map(el => total += el.price)
         setTotalPrice(total);
+        addToDb(product.key)
         Setitems(newItems);
 
     }
@@ -54,7 +58,7 @@ const Shop = () => {
             <div className="product-container">
 
                 {
-                    currentData.map(pd => <Product product={pd}  handleOrder={handleOrder}> </Product>)
+                    currentData.map(pd => <Product product={pd} key={pd.key} orderButton={true} handleOrder={handleOrder}> </Product>)
                 }
 
             </div>

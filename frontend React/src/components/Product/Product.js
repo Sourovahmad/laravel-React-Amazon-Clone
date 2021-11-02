@@ -5,8 +5,6 @@ import './Product.css';
 
 const Product = (props) => {
 
-
-
     const product = props.product;
 
     return (
@@ -25,7 +23,12 @@ const Product = (props) => {
 
                 <p><small> Only <b> {product.stock}</b> left. Order Soon</small></p>
 
-                <button onClick={() => props.handleOrder(product)} className="order-button"> <i className="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart</button>
+                {
+                    props.orderButton === true &&
+                    <button onClick={() => props.handleOrder(product)} className="order-button">
+                    <i className="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart 
+                    </button>
+                }
 
             </div>
 
