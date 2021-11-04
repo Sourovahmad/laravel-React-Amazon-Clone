@@ -6,6 +6,8 @@ import './Product.css';
 const Product = (props) => {
 
     const product = props.product;
+    const isRemoved = props.removeItem;
+
 
     return (
         <div className="singleProduct">
@@ -24,10 +26,21 @@ const Product = (props) => {
                 <p><small> Only <b> {product.stock}</b> left. Order Soon</small></p>
 
                 {
+                   props.quantity === true &&
+                    <p><small> Quantity: <b> {product.quantity}</b></small></p>
+                }
+                {
                     props.orderButton === true &&
                     <button onClick={() => props.handleOrder(product)} className="order-button">
                     <i className="fa fa-shopping-cart" aria-hidden="true"></i> Add To Cart 
                     </button>
+                }
+                {
+                    isRemoved && 
+                    <button onClick={() => isRemoved(product.key)} className="order-button">
+                    <i className="fa fa-trash" aria-hidden="true"></i> Remove
+                    </button>
+
                 }
 
             </div>
