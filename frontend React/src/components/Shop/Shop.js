@@ -3,7 +3,7 @@ import './Shop.css';
 import Products from '../../fakeData/products.json'
 import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
-import { addToDb } from '../../utilities/fakedb';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
 
 
 
@@ -12,15 +12,43 @@ const Shop = () => {
 
         
     const [allData, setAllData] = useState([]);
-    let [firstInput, setFirstInput] = useState(0);
-    let [secondInput, setSecondInput] = useState(10);
     const [totalPrice, setTotalPrice] = useState(0)
 
 
+    const [items, Setitems] = useState([]);
 
     useEffect(() => {
 
+        const myCarts = getStoredCart();
+        const items = Object.keys(myCarts);
+ 
+          const CartItems = items.map(key => {
+              
+             let AllProducts = [];
+            const singleProduct = Products.find(pd => pd.key === key);
+            const ProdcutQuantity = myCarts[key];
+
+            if(ProdcutQuantity > 1){
+                for (let index = 0; index <= ProdcutQuantity; index++) {                   
+                    AllProducts.push(singleProduct);                   
+                }
+            } else {
+                AllProducts.push(singleProduct);    
+            }
+
+            let totalPrice = 0;
+            AllProducts.map(pd => totalPrice += pd.price);
+            setTotalPrice(totalPrice)
+
+          return AllProducts;
+             
+        });
+
+
+        Setitems(CartItems)
         setAllData(Products)
+
+
         return () => {
             setAllData([]);
         }
@@ -28,30 +56,25 @@ const Shop = () => {
     }, []);
 
 
-    const [items, Setitems] = useState([]);
 
     const handleOrder = product => {
 
         let newItems = [...items, product];
+        
+        const UpdatedPrice = totalPrice + product.price;
+        setTotalPrice(UpdatedPrice);
 
-        // const total = newItems.reduce((totalPrice, item) => totalPrice + item.price, 0)
-        let total = 0;
-        newItems.map(el => total += el.price)
-        setTotalPrice(total);
-        addToDb(product.key)
         Setitems(newItems);
+        addToDb(product.key)
 
     }
 
-    const numberChanger = num => {
-        let result = (Number(num)).toFixed(2);
-        return result;
-    }
 
 
 
 
-    const currentData = allData.slice(firstInput, secondInput);
+
+    const currentData = allData.slice(0, 10);
 
     return (
         <div className="shop-container">
@@ -66,7 +89,7 @@ const Shop = () => {
             <div className="cart-container">
                 <h4>Order Summary</h4>
                 <h6> <b>Items Orderd: {items.length} </b></h6>
-                <p><small>Total Price: <b> ${numberChanger(totalPrice)} </b>  </small></p>
+                <p><small>Total Price: <b> {totalPrice}  </b>  </small></p>
                 <Link to="/review"> 
                  <button  className="order-button"> Review Order </button>
                 </Link>

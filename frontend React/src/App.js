@@ -1,6 +1,7 @@
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
+import Inventory from "./components/Inventory/Inventory";
 import NotFound from "./components/NotFound/NotFound";
 import ProductDetail from "./components/ProductDetails/ProductDetail";
 import Review from "./components/Review/Review";
@@ -35,6 +36,9 @@ function App() {
        <ProductDetail></ProductDetail>
       </Route>
 
+    <Route exact path="/inventory">
+      <Inventory></Inventory>
+    </Route>
 
           <Route path="*">
             <NotFound></NotFound>
