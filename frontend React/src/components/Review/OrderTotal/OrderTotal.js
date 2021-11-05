@@ -16,7 +16,7 @@ const OrderTotal = (props) => {
 
 
         <div className="text-center">
-            <button onClick={()=> alert("Order Placed")} className="order-button">
+            <button onClick={props.orderPlacedHandle} className="order-button">
                 Place Order
             </button>
             </div>

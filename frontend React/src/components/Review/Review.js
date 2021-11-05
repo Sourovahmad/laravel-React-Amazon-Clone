@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { deleteFromDb, getStoredCart } from '../../utilities/fakedb';
+import { clearTheCart, deleteFromDb, getStoredCart } from '../../utilities/fakedb';
 import allProducts from '../../fakeData/products.json';
 import Product from '../Product/Product';
 import './Review.css';
 import OrderTotal from './OrderTotal/OrderTotal';
+import gifyImage from '../../images/giphy.gif';
 
 
 
 const Review = () => {
 
    const [orderdItems, setorderdItems] = useState([]);
+   const [orderSuccess, setOrderSuccess] = useState(false);
+   
+
+   const orderPlacedHandle = () =>{
+      setorderdItems([]);
+      setOrderSuccess(true)
+      clearTheCart()
+   }
 
    
    const removeItem = (key) => {
@@ -62,6 +71,20 @@ const Review = () => {
     return (
         <div className="review-page-conatainer">
              
+
+             {
+                orderSuccess && 
+
+                <div className="">
+                     <img src={gifyImage} alt="gify" />
+
+                     <div className="text-center">
+                        <h3> Order Success MF </h3>
+                     </div>
+                </div>
+                 
+
+             }
              <div className="review-proudct-area">
              { 
                orderdItems.map(pd => <Product product={pd}
@@ -76,6 +99,7 @@ const Review = () => {
              <div className="review-process-area">
                   <OrderTotal 
                      cartItems = {orderdItems}
+                     orderPlacedHandle = {orderPlacedHandle}
                   ></OrderTotal>
              </div>
 
